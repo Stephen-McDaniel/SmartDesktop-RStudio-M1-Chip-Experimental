@@ -2,7 +2,7 @@
 
 USE IN PRODUCTION AT YOUR OWN RISK - underlying software is not yet in production
 
-The smart, portable, reproducible way to develop R programs, Shiny web apps & RMarkdown docs on your desktop. Includes R 4.2.0, the RStudio IDE, the tidyverse, verse and geospatial-related tools from the R rocker-org project as a web app. All wrapped neatly into Docker via docker-compose.
+The smart, portable, reproducible way to develop R programs, Shiny web apps & RMarkdown docs on your desktop. Includes R 4.2.0 and the RStudio IDE. All wrapped neatly into Docker via docker-compose.
 
 THIS REPOSITORY IS SPECIFICALLY FOR ARM64 architecture, specifically the Apple M1 Pro Chip. Use https://github.com/Stephen-McDaniel/SmartDesktop-RStudio for general purpose use on most every other personal computer/laptop/MacBook Pro before 2021. I tried several solutions including Rosetta, Rancher, https://github.com/fdewes/rstudio-server-arm64 and others. The work by the Center for Computational Biomedicine at Harvard Medical School was the best stopgap solution I have found. Thanks to that team at Harvard!
 
