@@ -1,0 +1,56 @@
+version: '2.3'
+
+#======================================================
+#
+#  USE IN PRODUCTION CAPACITY AT YOUR OWN RISK!
+#  Non-production software
+#  
+#  SmartDesktop for ShinyProxy M1 Chip Macbook
+#  © 2022, YakData, LLC
+#  All Rights Reserved.
+#  YakData, LLC is a Florida, USA private limited company.
+#
+#  Distributed under the Apache 2.0 license at https://apache.org/licenses/LICENSE-2.0
+#
+#   Developer: Stephen McDaniel
+#
+#        Date: 2022JUN
+#   Mod Dates: 
+#
+#======================================================
+
+# Recommended admin modified section
+
+x-edit: &analytic_resources
+  cpu_count: 2
+  cpu_percent: 80
+  mem_reservation: "450m"
+  mem_limit: "2000m"
+  memswap_limit: "0m"
+
+# END of recommended admin modified section
+
+
+services:
+    rstudio-4.2.0:
+        container_name: rstudio-4.2.0
+        hostname: rstudio-4.2.0
+        build: 
+          context: .
+          dockerfile: Dockerfile
+        image: rstudio-4.2.0
+        ports:
+          - 4200:8787
+          # includes SSH access on port 2200, comment out next line to disable
+          - '2200:22'
+        volumes:
+          - ./site-library/R/4.2:/home/user/R/aarch64-unknown-linux-gnu-library/4.2
+          - ./config/R/Rprofile.site:/usr/local/lib/R/etc/Rprofile.site
+          - ./content:/home/rstudio
+          # credentials like OAuth for BigQuery
+          - ./.cache:/home/rstudio/.cache
+        restart: unless-stopped
+        environment:
+          - CONTAINER_USER_USERNAME=rstudio
+          - CONTAINER_USER_PASSWORD=rstudio
+        <<: *analytic_resources
